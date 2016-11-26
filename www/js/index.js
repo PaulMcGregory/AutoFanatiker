@@ -35,7 +35,7 @@ var app = {
     onDeviceReady: function() {
 		
 		cordova.InAppBrowser.open('https://www.autofanatiker.de/', '_self', 'location=no,fullscreen=yes');
-		app.oneSignal();	
+		/*app.oneSignal();*/
     },
 	oneSignal: function() {
 		var notificationOpenedCallback = function(jsonData) {
