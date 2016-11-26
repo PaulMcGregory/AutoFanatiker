@@ -34,7 +34,18 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+		
+		var notificationOpenedCallback = function(jsonData) {
+			console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+		};
+
+		window.plugins.OneSignal
+			.startInit("cfc832c5-4d77-41df-a990-7aa48426de1f", "617167164628")
+			.handleNotificationOpened(notificationOpenedCallback)
+			.endInit();
+			
 		cordova.InAppBrowser.open('http://www.autofanatiker.de', '_blank', 'location=no,fullscreen=yes');
+		
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
