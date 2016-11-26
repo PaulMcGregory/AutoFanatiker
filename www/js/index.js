@@ -34,6 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+		cordova.InAppBrowser.open('http://www.autofanatiker.de', '_blank', 'location=no,fullscreen=yes');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
