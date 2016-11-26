@@ -35,10 +35,10 @@ var app = {
     onDeviceReady: function() {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
-        app.setupPush();
-		/*app.oneSignal();
-		*/
-		cordova.InAppBrowser.open('https://www.autofanatiker.de/mobile-version', '_blank', 'location=no,fullscreen=yes');
+        /*app.setupPush();*/
+		app.oneSignal();
+		
+		cordova.InAppBrowser.open('https://www.autofanatiker.de', '_blank', 'location=no,fullscreen=yes');
 		
     },
 	oneSignal: function() {
@@ -47,7 +47,7 @@ var app = {
 		};
 
 		window.plugins.OneSignal
-			.startInit("cfc832c5-4d77-41df-a990-7aa48426de1f", "617167164628y")
+			.startInit("cfc832c5-4d77-41df-a990-7aa48426de1f", "617167164628")
 			.handleNotificationOpened(notificationOpenedCallback)
 			.endInit();
 	},
@@ -55,7 +55,7 @@ var app = {
         console.log('calling push init');
         var push = PushNotification.init({
             "android": {
-                "senderID": "617167164628y"
+                "senderID": "617167164628"
             },
             "browser": {},
             "ios": {

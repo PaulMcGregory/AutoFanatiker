@@ -33,12 +33,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        console.log('Received Device Ready Event');
-        console.log('calling setup push');
-        app.setupPush();
-		/*app.oneSignal();
-		*/
-		cordova.InAppBrowser.open('https://www.autofanatiker.de/mobile-version', '_blank', 'location=no,fullscreen=yes');
+		app.oneSignal();	
+		cordova.InAppBrowser.open('https://www.autofanatiker.de', '_blank', 'location=no,fullscreen=yes');
 		
     },
 	oneSignal: function() {
@@ -47,56 +43,8 @@ var app = {
 		};
 
 		window.plugins.OneSignal
-			.startInit("cfc832c5-4d77-41df-a990-7aa48426de1f", "617167164628y")
+			.startInit("cfc832c5-4d77-41df-a990-7aa48426de1f", "617167164628")
 			.handleNotificationOpened(notificationOpenedCallback)
 			.endInit();
-	},
-    setupPush: function() {
-        console.log('calling push init');
-        var push = PushNotification.init({
-            "android": {
-                "senderID": "617167164628"
-            },
-            "browser": {},
-            "ios": {
-                "sound": true,
-                "vibration": true,
-                "badge": true
-            },
-            "windows": {}
-        });
-        console.log('after init');
-
-        push.on('registration', function(data) {
-            console.log('registration event: ' + data.registrationId);
-
-            var oldRegId = localStorage.getItem('registrationId');
-            if (oldRegId !== data.registrationId) {
-                // Save new registration ID
-                localStorage.setItem('registrationId', data.registrationId);
-                // Post registrationId to your app server as the value has changed
-            }
-
-            var parentElement = document.getElementById('registration');
-            var listeningElement = parentElement.querySelector('.waiting');
-            var receivedElement = parentElement.querySelector('.received');
-
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
-        });
-
-        push.on('error', function(e) {
-            console.log("push error = " + e.message);
-        });
-
-        push.on('notification', function(data) {
-            console.log('notification event');
-            navigator.notification.alert(
-                data.message,         // message
-                null,                 // callback
-                data.title,           // title
-                'Ok'                  // buttonName
-            );
-       });
-    }
+	}
 };
