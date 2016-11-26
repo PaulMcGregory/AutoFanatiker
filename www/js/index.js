@@ -34,8 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 		app.oneSignal();	
-		cordova.InAppBrowser.open('https://www.autofanatiker.de/', '_blank', 'location=no,fullscreen=yes');
-		
+		cordova.InAppBrowser.open('https://www.autofanatiker.de/', '_self', 'location=no,fullscreen=yes');
     },
 	oneSignal: function() {
 		var notificationOpenedCallback = function(jsonData) {
