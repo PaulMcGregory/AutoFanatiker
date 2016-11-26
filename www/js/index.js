@@ -35,16 +35,17 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
 		
+		cordova.InAppBrowser.open('http://www.autofanatiker.de', '_blank', 'location=no,fullscreen=yes');
 		var notificationOpenedCallback = function(jsonData) {
 			console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
 		};
 
 		window.plugins.OneSignal
-			.startInit("cfc832c5-4d77-41df-a990-7aa48426de1f", "617167164628")
+			.startInit("cfc832c5-4d77-41df-a990-7aa48426de1f", "617167164628y")
 			.handleNotificationOpened(notificationOpenedCallback)
 			.endInit();
 			
-		cordova.InAppBrowser.open('http://www.autofanatiker.de', '_blank', 'location=no,fullscreen=yes');
+
 		
     },
     // Update DOM on a Received Event
