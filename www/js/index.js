@@ -33,9 +33,9 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-		
+		app.oneSignal();
 		cordova.InAppBrowser.open('https://www.autofanatiker.de/', '_self', 'location=no,fullscreen=yes');
-		/*app.oneSignal();*/
+		
     },
 	oneSignal: function() {
 		var notificationOpenedCallback = function(jsonData) {
